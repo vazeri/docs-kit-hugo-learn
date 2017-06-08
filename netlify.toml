@@ -1,0 +1,24 @@
+# Global settings applied to the whole site.
+[build]
+  publish = "public"
+  
+# Production context: All deploys to the main
+# repository branch will inherit these settings.
+[context.production]
+  command = "hugo --baseURL=$URL"
+  [context.production.environment]
+    HUGO_VERSION = "0.21"
+
+# Deploy Preview context: All Deploy Previews
+# will inherit these settings.
+[context.deploy-preview]
+  command = "hugo --buildDrafts --buildFuture --baseURL=$DEPLOY_PRIME_URL"
+  [context.deploy-preview.environment]
+    HUGO_VERSION = "0.21"
+
+# Branch Deploy context: All deploys that are not in
+# an active Deploy Preview will inherit these settings.
+[context.branch-deploy]
+  command = "hugo --buildDrafts --buildFuture --baseURL=$DEPLOY_PRIME_URL"
+    [context.branch-deploy.environment]
+    HUGO_VERSION = "0.21"
